@@ -5,7 +5,12 @@ import PlacePreview from '../MapComps/PlacePreview.js';
 export default {
     template: `
     <section class="places">
-        <h1>Maps App</h1> 
+        <h1>Maps App</h1>
+        <form>
+        <input type="text" placeholder="Search" class="search-input"/>
+        <button class="search-btn">Go</button>
+        </form> 
+        <div id="map"></div>        
         <ul>
             <li v-for="place in places">
             <place-preview :place="place"></place-preview>
@@ -26,15 +31,10 @@ export default {
                 this.places = places;
             })
     },
+    mounted() {
+        MapService.initMap();        
+    },
     components: {
         PlacePreview
     }
 }
-
-// <!-- <li v-for="place in places">
-//     <h1>{{place.name}}</h1>
-//     <h3>{{place.desc}}</h3>
-//     <h4>{{place.lat}}</h4>
-//     <h4>{{place.lng}}</h4>
-//     <h4>{{place.tag}}</h4>
-//     <img class="place-img" :src="'..img/' + plac"  /> -->
