@@ -9,7 +9,7 @@ new Vue({
     template: `
         <section>
                 <h1>My App</h1> 
-                <nav>
+                <nav> 
                     <router-link to="/" exact>Home</router-link>
                     <router-link to="/emails" >Emails</router-link>
                     <router-link to="/places" >Places</router-link>
