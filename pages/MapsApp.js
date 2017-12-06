@@ -1,4 +1,5 @@
 'use strict' // Start of use strict
+
 import MapService from '../services/MapService.js';
 import PlacePreview from '../MapComps/PlacePreview.js';
 
@@ -10,8 +11,9 @@ export default {
         <input type="text" placeholder="Search" class="search-input"/>
         <button class="search-btn">Go</button>
         </form> 
-        <div id="map"></div>        
-        <ul>
+        <div id="map"></div>  
+        <div class="places-title">Your Places</div>        
+        <ul class="place-preview">
             <li v-for="place in places">
             <place-preview :place="place"></place-preview>
             </li>

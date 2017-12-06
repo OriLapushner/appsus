@@ -1,11 +1,4 @@
+/* App CSS */
 @import url("_emailPrev.css");
-
-
-nav {
-    background: rgba(92, 92, 100, 0.295);
-}
-
-#map {
-    height: 400px;
-    width: 100%;
-}
+@import "_mapApp.css";
+@import "_homepage.css";
