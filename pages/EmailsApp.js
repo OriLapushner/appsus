@@ -1,13 +1,13 @@
 'use strict' // Start of use strict
-import emailPrevCmp from '../emailComponents/EmailPreviewCmp.js'
+import EmailList from '../EmailComponents/EmailList.js'
 export default {
     template: `
     <div>
     <h1>Emails App</h1>
-    <emailPrevCmp></emailPrevCmp> 
+    <email-list></email-list>
     </div>
     `,
     components:{
-        emailPrevCmp
+        EmailList
     }
 }

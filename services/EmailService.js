@@ -33,8 +33,14 @@ var mailList = [
     content:'body of email text3',
 },
 ]
-
+function getMails(){
+    return new Promise((resolve,reject) =>{
+    setTimeout(()=> {resolve(mailList)
+        
+    }, timeout);
+})
+}
 
 export default{
-    mailList
+    getMails
 }

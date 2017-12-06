@@ -1,7 +1,7 @@
 'use strict'
 import HomePage from './pages/HomePage.js'
-import PlacesPage from './pages/PlacesPage.js'
-import EmailsPage from './pages/EmailsPage.js'
+import MapsApp from './pages/MapsApp.js'
+import EmailApp from './pages/EmailsApp.js'
 
 const routes = [
     {
@@ -9,15 +9,13 @@ const routes = [
         component: HomePage
     },
     {
-        path: '/places',
-        component: PlacesPage
-    }, 
+        path: '/maps',
+        component: MapsApp
+    },
     {
         path: '/emails',
-        component: EmailsPage
-    }
-   
-
+        component: EmailApp
+    }   
 ];
 
 export default routes;

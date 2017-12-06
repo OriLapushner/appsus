@@ -12,14 +12,14 @@ new Vue({
                 <nav> 
                     <router-link to="/" exact>Home</router-link>
                     <router-link to="/emails" >Emails</router-link>
-                    <router-link to="/places" >Places</router-link>
+                    <router-link to="/maps" >Maps</router-link>
                 </nav>
                 <router-view></router-view>
-                <footer>cofferights 2018</footer>            
+                <footer>copyrights&copy; 2018</footer>            
         </section>
     `,
     created() {
-        console.log('Vue App was created!');
+        console.log('Vue App was created. Great success!');
     },
     router: myRouter,
 }).$mount('#app')

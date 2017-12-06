@@ -1,13 +1,13 @@
-import mailService from '../EmailService.js'
+import mailService from '../services/EmailService.js'
 export default { 
     
     template : `
                 <div>
-                    {{email.title}}
-                    {{email.sentBy}}
+                    {{mail.title}}
+                    {{mail.sentBy}}
                 </div>
     `,
-    props: ['email'],
+    props: ['mail'],
     data(){
         return{
             mailList:mailService.mailList
