@@ -11,8 +11,8 @@ new Vue({
                 <h1>My App</h1> 
                 <nav>
                     <router-link to="/" exact>Home</router-link>
-                    <router-link to="/Emails" >Emails</router-link>
-                    <router-link to="/Places" >Places</router-link>
+                    <router-link to="/emails" >Emails</router-link>
+                    <router-link to="/places" >Places</router-link>
                 </nav>
                 <router-view></router-view>
                 <footer>cofferights 2018</footer>            
