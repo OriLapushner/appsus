@@ -1,8 +1,9 @@
-import mailService from '../services/EmailService.js'
+import EmailService from '../services/EmailService.js'
 export default { 
     
     template : `
                 <div>
+                <button @click="deleteMail(mail.id)">delete</button>
                     {{mail.title}}
                     {{mail.sentBy}}
                 </div>
@@ -10,10 +11,13 @@ export default {
     props: ['mail'],
     data(){
         return{
-            mailList:mailService.mailList
+            mailList:EmailService.mailList
         }
 
     },
+    methods:{
+        deleteMail: EmailService.deleteMail
+    }
     
 }
 
