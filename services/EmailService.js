@@ -59,3 +59,6 @@ var index = mailList.findIndex(mail => mail.id === mailId)
 mailList.splice(index,1);
 
 }
+function deleteMails(mailIdsArr){
+array.forEach(deleteMail);
+}

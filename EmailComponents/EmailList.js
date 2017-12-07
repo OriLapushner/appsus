@@ -5,8 +5,9 @@ import EmailCompose from './EmailCompose.js'
 export default {
 
     template: `
-                <div>
+                <div class ="list-container">
                 <button @click="composeShown = !composeShown">composeMail</button>
+                <button @click="deleteMails(mails.ids)">delete</button>                
                 <input type="text" placeholder="search email">
                 <button>arrange by date</button>
                 <button>newest first</button>

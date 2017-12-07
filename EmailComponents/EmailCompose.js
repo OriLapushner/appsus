@@ -7,7 +7,7 @@ export default {
                 <div class = "compose">
                 <input type = "text" placeholder="Send To">
                 <input type = "text" placeholder="Title">
-                <div contenteditable="true">
+                <div contenteditable="true" class ="compose-content">
                 mail content
               </div>
                 </div>

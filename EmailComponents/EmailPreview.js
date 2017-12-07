@@ -4,6 +4,7 @@ export default {
     template : `
                 <div>
                 <button @click="deleteMail(mail.id)">delete</button>
+                <input type ="checkbox">
                     {{mail.title}}
                     {{mail.sentBy}}
                 </div>
