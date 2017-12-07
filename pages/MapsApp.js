@@ -24,11 +24,10 @@ export default {
         <div class="places-title">Your Places</div>        
         <ul class="place-preview">
             <li v-for="place in places">
-            <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
-            <place-details v-if="selectedId === place.id" :place="place"></place-details>
+                <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
+                <place-details v-if="selectedId === place.id" :place="place"></place-details>
             </li>
         </ul>
-
     </section>
 
     

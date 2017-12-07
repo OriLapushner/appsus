@@ -8,7 +8,7 @@ export default {
         <button class="render-details" @click="$emit('editClicked', place.id)">See More</button>
     </section>
     `,
-    props: ['place']
+    props: ['place'], 
 }
 
 

@@ -88,6 +88,11 @@ function searchPlace(searchTxt) {
     })
 }
 
+function updatePlace(place) {
+    let placeToUpdateIdx = places.findIndex(currPlace => currPlace.id === place.id)
+    places.splice(placeToUpdateIdx, 1, place);  
+    
+}
 
 export default {
     getPlaces,
@@ -95,5 +100,6 @@ export default {
     deletePlace,
     searchPlace,
     addPlace,
+    updatePlace
 }
 
