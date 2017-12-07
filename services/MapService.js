@@ -24,18 +24,6 @@ var places = [
     }
 ]
 
-function getEmptyPlace() {
-    return {
-        id: id++,
-        name: '', 
-        desc: '', 
-        lat: 0,
-        lng: 0,
-        tag: '', 
-        photo: ''
-    }
-}
-
 function initMap(lat, lng) {
     if (!lat) lat = 32.085300;
     if (!lng) lng = 34.781768;
@@ -107,6 +95,5 @@ export default {
     deletePlace,
     searchPlace,
     addPlace,
-    getEmptyPlace
 }
 

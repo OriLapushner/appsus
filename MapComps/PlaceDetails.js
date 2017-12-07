@@ -1,13 +1,15 @@
-'use strict' // Start of use strict
+    'use strict' // Start of use strict
 
 import MapService from '../services/MapService.js';
 
 export default {
     template: ` 
         <section>
-           <h1> Where?  {{place.name}} Tag: {{place.tag}}</h1>
+           <input Where?  {{place.name}} Tag: {{place.tag}} />
+           Testing:  {{place.name}}
            <h3> What? {{place.desc}}</h3>
            <img class="place-img" :src="'..img/' + place.id + '.jpg'"
+           <button class="edit-btn">Edit</button>
            <button class="delete-btn" @click="deletePlace(place.id)">X</button> 
         </section>
     `, 

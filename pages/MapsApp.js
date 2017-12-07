@@ -3,7 +3,6 @@
 import MapService from '../services/MapService.js';
 import PlacePreview from '../MapComps/PlacePreview.js';
 import PlaceDetails from '../MapComps/PlaceDetails.js';
-import SavePlace from '../MapComps/SavePlace.js';
 
 export default {
     template: `
@@ -25,10 +24,11 @@ export default {
         <div class="places-title">Your Places</div>        
         <ul class="place-preview">
             <li v-for="place in places">
-            <place-preview :place="place"></place-preview>
-            <place-details :place="place"></place-details>
+            <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
+            <place-details v-if="selectedId === place.id" :place="place"></place-details>
             </li>
         </ul>
+
     </section>
 
     
@@ -40,9 +40,16 @@ export default {
             currPlace: null,
             text: '',
             isShown: false,
+            desc: '', 
+            tag: '',
+            selectedId: null
         }
     },
     methods:  {
+        changeSelectedId(id){
+            console.log({id})
+            this.selectedId = id;
+        },
         searchPlace() {
             MapService.searchPlace(this.searchTxt)
             .then((res) => {
@@ -52,21 +59,20 @@ export default {
                 this.text = "found address! do you want to save?"
                 MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
                 this.isShown = true;                
-                //this.currPlace = this.createPlaceObject(res)
             })
             .catch(err => console.log(err))
         },
         savePlace() {
-            console.log('saved place');
-            console.log(this.currPlace.id);
+            var addedPlace = {
+                id: this.currPlace.place_id ,
+                name: this.currPlace.formatted_address, 
+                desc: this.desc, 
+                lat: this.currPlace.geometry.location.lat ,
+                lng: this.currPlace.geometry.location.lng,
+                tag: this.tag
+            }
+            this.places.push(addedPlace);
         },
-        createPlaceObject(rawPlace) {
-            var place = MapService.getEmptyPlace();
-            // place.name = rawPlace.address_components.long_name;
-
-            
-            return place;
-        }
     },
     created() {
         MapService.getPlaces()
@@ -80,7 +86,8 @@ export default {
     components: {
         PlacePreview,
         PlaceDetails,
-        SavePlace
     }
 }
+
+
 
