@@ -1,6 +1,4 @@
 'use strict'
-// import EmailService from '../services/EmailService.js'
-
 export default {
 
     template: `

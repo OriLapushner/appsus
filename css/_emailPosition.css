@@ -1,0 +1,14 @@
+.list-and-display-container{
+display:flex
+}
+.list-container{
+    width:30%;
+    min-width: 200px;
+    float: left;
+}
+.email-display{
+    width: 50%;
+    min-width: 250px;
+    float: left;
+    background: lightgreen;
+    }
