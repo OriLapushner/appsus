@@ -1,11 +1,23 @@
 'use strict' // Start of use strict
 
+import MapService from '../services/MapService.js';
+
 export default {
     template: ` 
         <section>
-            Where? <h1>{{place.name}}</h1>
-            What? <h3>{{place.desc}}</h3>
-            Tag: <h4>{{place.tag}}</h4>
+           <h1> Where?  {{place.name}} Tag: {{place.tag}}</h1>
+           <h3> What? {{place.desc}}</h3>
+           <img class="place-img" :src="'..img/' + place.id + '.jpg'"
+           <button class="delete-btn" @click="deletePlace(place.id)">X</button> 
         </section>
-    `,
+    `, 
+    props: ['place'],
+    methods: {
+        deletePlace(placeId) {
+            MapService.deletePlace(placeId)
+            .then(_ => {
+                alert('Are you sure about this?');
+            })
+        }
+    }
 }

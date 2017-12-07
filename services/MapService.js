@@ -15,11 +15,11 @@ var places = [
     },
     {
         id: id++,
-        name: 'Anita Neve-Tsedek',
+        name: 'Shabazi 40, Tel Aviv-Yafo',
         desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
         lat: 32.062686,
         lng: 34.766461,
-        tag: 'Anita Ice-Cream, Neve-Tsedek branch',
+        tag: 'Food',
         photo: '..img/anita.jpg'  
     }
 ]
@@ -46,9 +46,54 @@ function getPlaces() {
     });
 }
 
+// function addPlace(place) {
+//     return new Promise((resolve, reject) => {
+//         if (place.id) {
+//             let placeToUpdateIdx = place.findIndex(currPlace => currPlace.id === place.id)
+//             places.spilce(placeToUpdateIdx, 1, place)
+//         } else {
+//             place.id = _getNextId();
+//             places.push(place);
+//         }
+//         resolve(note);
+//     })
+// }
+
+function deletePlace(placeId) {
+    return new Promise((resolve, reject) => {
+        let placeIdx = places.findIndex(place => place.id === placeId); 
+        places.splice(placeIdx, 1); 
+    })
+}
+
+function _getNextId() {
+    var maxId = places.reduce((acc, note) => {
+        return (place.id > acc) ? place.id : acc
+    }, 0);
+    return maxId + 1;
+}
+
+function searchPlace(searchTxt) {
+    // let elSearchInput = document.querySelector('.search-input'); 
+
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchTxt}&key=AIzaSyDDt-heZX7Ax5jIybzzkhsBYw7nGSQYY6A`)
+       .then(function(res) {
+       let result = res.data.results[0];
+       initMap(result.geometry.location.lat, result.geometry.location.lng);
+       console.log('searchTxt', searchTxt);
+    })
+    .catch(err => {
+       alert(err);
+    })
+}
+
 
 export default {
     getPlaces,
-    initMap
+    initMap,
+    deletePlace,
+    searchPlace
+    // addPlace
+    // searchPlace
 }
 
