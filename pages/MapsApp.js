@@ -17,7 +17,7 @@ export default {
             <p>{{text}}</p>
             <p class="search-res-address">{{currPlace.formatted_address}}</p>
             <input class="search-res-desc" placeholder="Description" v-model="desc" required/>
-            <input class="search-res-tag" placeholder="Tag" v-model="tag" required/>
+            <input class="search-res-tag" placeholder="Tag" v-model="tag" />
             <button class="save-btn" @click="savePlace">Save Place</button>
         </div>
         <div id="map"></div>  
@@ -28,9 +28,7 @@ export default {
                 <place-details v-if="selectedId === place.id" :place="place"></place-details>
             </li>
         </ul>
-    </section>
-
-    
+    </section> 
     `,
     data() {
         return {
@@ -46,7 +44,7 @@ export default {
     },
     methods:  {
         changeSelectedId(id){
-            console.log({id})
+            // console.log({id})
             this.selectedId = id;
         },
         searchPlace() {
