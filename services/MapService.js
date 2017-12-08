@@ -25,8 +25,8 @@ var places = [
 ]
 
 function initMap(lat, lng) {
-    if (!lat) lat = 32.085300;
-    if (!lng) lng = 34.781768;
+    if (!lat) lat = 27.715390;
+    if (!lng) lng = 85.312329;
     gMap = new google.maps.Map(document.querySelector('#map'), {
         zoom: 15,
         center: { lat, lng }
@@ -62,8 +62,19 @@ function initMap(lat, lng) {
         marker.addListener('click', function () {
             infoWindow.open(gMap, marker);
         })
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(32.085300, 34.781768),
+            new google.maps.LatLng(32.162413, 34.844675));
+
+        var options = {
+            bounds: defaultBounds
+        }
+
+        var input = document.querySelector('.search-input');
+        gMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
 
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
     })
 
 
