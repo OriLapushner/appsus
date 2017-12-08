@@ -1,5 +1,5 @@
 'use strict'
-var mailList = [
+var sourceMailList = [
     {
         id: 0,
         sentBy: 'sentBy',
@@ -33,32 +33,64 @@ var mailList = [
         content: 'content3',
     },
 ]
-function getMails() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(mailList)
+var mailList = sourceMailList.slice()
 
-        }, 1000);
-    })
+function getMails() {
+    return mailList
 }
+
 
 export default {
     getMails,
-    deleteMail
-    // searchMailByTxt,
-    // searchMailsByTxt
+    deleteMails,
+    sendMail,
+    searchMailsByTxt,
+    mailList
 }
 
-// function searchMailsByTxt(mails, txt) {
-//     mails.filter(mail => (searchMailByTxt(currMail, txt)))
+function searchMailsByTxt(txt) {
+    console.log('text to search: ', txt)
+    return mailList.filter(mail => {
+        if (mail.title.includes(txt)) return true
+        if (mail.content.includes(txt)) return true
+        if (mail.sentBy.includes(txt)) return true
+        return false;
+    })
+    console.log(mailList)
+}
+
+// function searchMailByTxt(mail,txt){
+//     console.log('text to search: ',txt)
+//     if(mail.title.includes(txt)) return true
+//     if(mail.content.includes(txt)) return true
+//     if(mail.sentBy.includes(txt)) return true
+//     return false;
 // }
 
 
-function deleteMail(mailId){
-var index = mailList.findIndex(mail => mail.id === mailId)
-mailList.splice(index,1);
+function deleteMail(mailId) {
+    var index = mailList.findIndex(mail => mail.id === mailId)
+    new Promise((resolve, reject) => {
+        resolve(index)
+    }).then((index) => mailList.splice(index, 1))
+
 
 }
-function deleteMails(mailIdsArr){
-array.forEach(deleteMail);
+function deleteMails(mailsIds) {
+    console.log(mailsIds)
+    for (var i = 0; i < mailsIds.length; i++) {
+        deleteMail(mailsIds[i])
+        
+    }
+    console.log('mails right now')
+}
+
+function sendMail(mail) {
+    mail.sentBy = "someone@gmail.com"
+    mail.isRead = false
+    console.log('mail received in service:', mail)
+    //should be sending info to server later
+    mailList.push(mail);
+    sourceMailList.push(mail);
+
 }

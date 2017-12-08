@@ -16,27 +16,27 @@ export default {
             <email-compose v-show="isComposeShown"></email-compose>
         </div>
     `,
-    data(){
-        return{
-            currMail:          {
+    data() {
+        return {
+            currMail: {
                 id: null,
                 sentBy: null,
                 title: null,
                 isRead: null,
                 sentAt: null,
                 content: '',
-            
-        },
-        isComposeShown: false
+
+            },
+            isComposeShown: false,
         }
     },
     created() {
         console.log('created')
-        EventBusService.$on('eventPassed',(currMail) =>{
+        EventBusService.$on('mailSelected', (currMail) => {
             this.currMail = currMail;
         })
     },
-    components:{
+    components: {
         EmailList,
         EmailDisplay,
         EmailSearch,

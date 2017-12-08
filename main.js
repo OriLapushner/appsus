@@ -15,7 +15,7 @@ new Vue({
                     <router-link to="/maps" >Maps</router-link>
                 </nav>
                 <router-view></router-view>
-                <footer>copyrights&copy; 2018</footer>            
+                <footer>copyrights&copy; 2018</footer>
         </section>
     `,
     created() {
