@@ -15,10 +15,12 @@ export default {
 
         <div v-if="isShown">
             <p>{{text}}</p>
-            <p class="search-res-address">{{currPlace.formatted_address}}</p>
-            <input class="search-res-desc" placeholder="Description" v-model="desc" required/>
-            <input class="search-res-tag" placeholder="Tag" v-model="tag" />
-            <button class="save-btn" @click="savePlace">Save Place</button>
+            <form class="search-res">
+                <p class="search-res-address">{{currPlace.formatted_address}}</p>
+                <input class="search-res-desc" placeholder="Description" v-model="desc" required/>
+                <input class="search-res-tag" placeholder="Tag" v-model="tag" />
+                <button class="save-btn" @click="savePlace">Save Place</button>
+            </form>
         </div>
         <div id="map"></div>  
         <div class="places-title">Your Places</div>        
