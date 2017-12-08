@@ -1,11 +1,10 @@
-    'use strict' // Start of use strict
+'use strict' // Start of use strict
 
-    import MapService from '../services/MapService.js';
-
+import MapService from '../services/MapService.js';
 
 export default {
     template: ` 
-        <section>
+        <section v-if="showDetails">
             <div>
                 <label>Where?</label>
                 <input v-model="updatedPlace.name" :disabled="editDisabled" />
@@ -16,38 +15,34 @@ export default {
             </div>
             <div>
                 <label>Tag it:</label>
-                <input v-model="updatedPlace.tag" :disabled="editDisabled" />                 
+                <select v-model="updatedPlace.tag" :disabled="editDisabled">
+                    <option>Culture</option>
+                    <option>Sport</option>
+                    <option>Food</option>
+                    <option>Work</option>
+                    <span>Selected: {{ updatedPlace.tag }}</span>                    
+              </select>                
             </div>
            <img class="place-img" :src="'..img/' + updatedPlace.id + '.jpg'"
            <button class="edit-btn" @click="editDisabled = !editDisabled">Toggle Edit</button>
            <button class="save-place-btn" @click="updatePlace" v-if="!editDisabled">Save</button>
-           <button class="delete-btn" @click="deletePlace(updatedPlace.id)">X</button> 
         </section>
-    `, 
+    `,
     props: ['place'],
     data() {
         return {
             updatedPlace: {},
-            editDisabled: true
+            editDisabled: true,
+            showDetails: true
         }
     },
     created() {
-        
-        console.log('this.place: ', this.place);
         this.updatedPlace = Object.assign({}, this.place);
-        console.log('updatedPlace ', this.updatedPlace);
-
-        
     },
     methods: {
-        deletePlace(placeId) {
-            MapService.deletePlace(placeId)
-            .then(_ => {
-                alert('Are you sure about this?');
-            })
-        }, 
         updatePlace() {
-            MapService.updatePlace(this.updatedPlace ); //id
+            MapService.updatePlace(this.updatedPlace); 
+            this.showDetails = false;
         }
     }
 }
