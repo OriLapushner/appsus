@@ -64,7 +64,7 @@ export default {
                 console.log(res)
                 if (!res) return
                 this.currPlace = res;
-                this.text = "found address! do you want to save?"
+                this.text = "Found address! do you want to save?"
                 MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
                 this.isShown = true;                
             })
