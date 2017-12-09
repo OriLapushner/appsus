@@ -49,6 +49,8 @@ function initMap(lat, lng) {
         position: { lat, lng },
         map: gMap,
         title: 'This is you',
+        draggable: true,
+        animation: google.maps.Animation.DROP,
         // icon: set custom icon
     });
     places.forEach(place => {
@@ -71,12 +73,19 @@ function initMap(lat, lng) {
         }
 
         var input = document.querySelector('.search-input');
-        gMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
+        // gMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
         var autocomplete = new google.maps.places.Autocomplete(input, options);
     })
 
+    function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+
+    }
 
 }
 

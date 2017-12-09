@@ -1,0 +1,9 @@
+:root {
+    --body-bg-color : #c4b3b3;
+    --font-size-title : 8vw;
+    --font-size-subtitle :6vw;
+    --font-size-text :4vw;
+    --font-family-title: 'Skranji-Regular', cursive;
+    --font-family-text: 'Overpass', sans-serif;
+    --font-family-subtitle: 'Della Respira', serif;
+}

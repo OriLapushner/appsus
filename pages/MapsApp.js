@@ -4,15 +4,15 @@ import MapService from '../services/MapService.js';
 import PlacePreview from '../MapComps/PlacePreview.js';
 import PlaceDetails from '../MapComps/PlaceDetails.js';
 
-{/* <input class="search-res-tag" placeholder="Tag" v-model="tag" /> */}
+/* <button class="form-item search-btn" @click="searchPlace">Search</button>  */
 
 export default {
     template: `
-    <section class="places">
-        <h1>Maps App</h1>
-        <form>
-            <input type="text" placeholder="Search" class="search-input" v-model="searchTxt" autofocus/>
-            <button class="search-btn" @click="searchPlace">Search</button>       
+    <section class="container">
+        <form class="search-form">
+            <input class="form-item search-input" placeholder="Search" v-model="searchTxt" autofocus/>
+            <i class="fa fa-search form-item search-btn" aria-hidden="true" @click="searchPlace"></i>            
+      
         </form> 
 
         <div v-if="isShown">
@@ -34,7 +34,7 @@ export default {
         <div id="map"></div>  
         <div class="places-title">Your Places</div>        
         <ul class="place-preview">
-            <li v-for="place in places">
+            <li class="preview-details" v-for="place in places">
                 <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
                 <place-details v-if="selectedId === place.id" :place="place"></place-details>
             </li>

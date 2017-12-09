@@ -1,5 +1,39 @@
 /* Homepage CSS */
 
 nav {
-    background: rgba(92, 92, 100, 0.295);
+    background: rgb(251, 232, 232);
+    text-align: center;
+    text-decoration: none;
+}
+
+.homepage-main {
+    display: flex;
+}
+
+.homepag-items {
+    display: flex;
+    flex-direction: column nowrap;
+    justify-content: center;
+}
+
+.app-title {
+    text-align: center;
+    font-size: 50px;
+    font-family: var(--font-family-title); 
+}
+
+.app-desc {
+    text-align: center;
+    font-family: var(--font-family-text);       
+}
+
+.app-sec-desc {
+    text-align: center;
+    font-family: var(--font-family-text);
+}
+
+.main-title{
+    font-family: var(--font-family-title); 
+    font-size: var(--font-size-title);
+    text-align: center;    
 }
