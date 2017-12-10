@@ -1,19 +1,21 @@
 'use strict' // Start of use strict
 import EmailList from '../EmailComponents/EmailList.js'
 import EmailDisplay from '../EmailComponents/EmailDisplay.js'
-import EmailSearch from '../EmailComponents/EmailSearch.js'
+import EmailMenu from '../EmailComponents/EmailMenu.js'
 import EmailCompose from '../EmailComponents/EmailCompose.js'
 import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
         <div>
             <h1>Emails App</h1>
-            <email-search @toggleCompose="isComposeShown = !isComposeShown"></email-search>
-            <div list-and-display-container>
-            <email-list></email-list>
-            <email-display :mail="currMail"></email-display>
+            <div class="list-and-display-container">
+                <div class ="list-container">
+                <email-menu @toggleCompose="isComposeShown = !isComposeShown"></email-menu>
+                <email-list></email-list>
+                </div>  
+                <email-display :mail="currMail"></email-display>
             </div>
-            <email-compose v-show="isComposeShown"></email-compose>
+            <email-compose v-show="isComposeShown" class="compose"></email-compose>
         </div>
     `,
     data() {
@@ -39,7 +41,7 @@ export default {
     components: {
         EmailList,
         EmailDisplay,
-        EmailSearch,
+        EmailMenu,
         EmailCompose
     }
 }

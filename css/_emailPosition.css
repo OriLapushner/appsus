@@ -1,5 +1,6 @@
 .list-and-display-container{
-display:flex
+display:flex;
+width: 100% 
 }
 .list-container{
     width:30%;
@@ -10,5 +11,5 @@ display:flex
     width: 50%;
     min-width: 250px;
     float: left;
-    background: lightgreen;
+    background: linear-gradient(to right,rgb(143, 138, 138) , rgb(134, 139, 143));
     }

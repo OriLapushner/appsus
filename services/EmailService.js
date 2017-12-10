@@ -4,9 +4,10 @@ var sourceMailList = [
         id: 0,
         sentBy: 'sentBy',
         title: 'title',
-        isRead: false,
-        sentAt: Date.now(),
+        isRead: true,
+        sentAt: Date.now() +2000,
         content: 'body of email text',
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
         id: 1,
@@ -15,6 +16,7 @@ var sourceMailList = [
         isRead: false,
         sentAt: Date.now() + 400,
         content: 'content1',
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
         id: 2,
@@ -23,6 +25,7 @@ var sourceMailList = [
         isRead: false,
         sentAt: Date.now() + 100,
         content: 'content2',
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
         id: 3,
@@ -31,6 +34,7 @@ var sourceMailList = [
         isRead: false,
         sentAt: Date.now() + 200,
         content: 'content3',
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
 ]
 var mailList = sourceMailList.slice()

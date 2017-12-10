@@ -6,9 +6,9 @@ export default {
                 <div class="compose">
                 <input type="text" placeholder="Send To" v-model="composedMail.sendTo">
                 <input type="text" placeholder="Title" v-model="composedMail.title">
-                <button @click="sendMail">send mail</button>
-                <textarea contenteditable="true" class="compose-content" v-model="composedMail.content">
+                <textarea contenteditable="true" class="compose-body" v-model="composedMail.content">
               </textarea>
+              <button @click="sendMail">send mail</button>
                 </div>
     `,
       data(){
