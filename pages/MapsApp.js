@@ -50,7 +50,8 @@ export default {
             isShown: false,
             desc: '', 
             tag: '',
-            selectedId: null
+            selectedId: null,
+            // showSearch: true
         }
     },
     methods:  {
@@ -66,7 +67,8 @@ export default {
                 this.currPlace = res;
                 this.text = "Found address! do you want to save?"
                 MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
-                this.isShown = true;                
+                this.isShown = true;  
+                // showSearch = false;              
             })
             .catch(err => console.log(err))
         },

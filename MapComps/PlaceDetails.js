@@ -6,16 +6,16 @@ export default {
     template: ` 
         <section v-if="showDetails">
             <div>
-                <label>Where?</label>
-                <input v-model="updatedPlace.name" :disabled="editDisabled" />
+                <label>Where? </label>
+                <input class="detail-name" v-model="updatedPlace.name" :disabled="editDisabled" />
             </div> 
             <div>
-                <label>What?</label>           
-                <input v-model="updatedPlace.desc" :disabled="editDisabled" />
+                <label>What? </label>           
+                <input class="detail-desc" v-model="updatedPlace.desc" :disabled="editDisabled" />
             </div>
             <div>
-                <label>Tag it:</label>
-                <select v-model="updatedPlace.tag" :disabled="editDisabled">
+                <label>Tag it: </label>
+                <select class="detail-tag" v-model="updatedPlace.tag" :disabled="editDisabled">
                     <option>Culture</option>
                     <option>Sport</option>
                     <option>Food</option>
@@ -23,9 +23,11 @@ export default {
                     <span>Selected: {{ updatedPlace.tag }}</span>                    
               </select>                
             </div>
-           <img class="place-img" :src="'..img/' + updatedPlace.id + '.jpg'"
-           <button class="edit-btn" @click="editDisabled = !editDisabled">Toggle Edit</button>
-           <button class="save-place-btn" @click="updatePlace" v-if="!editDisabled">Save</button>
+            <div class="action-detail-btns">
+                <img class="place-img" :src="'..img/' + updatedPlace.id + '.jpg'"
+                <i class="fa fa-toggle-on edit-btn" aria-hidden="true" @click="editDisabled = !editDisabled"></i>           
+                <i class="fa fa-floppy-o save-place-btn" aria-hidden="true" @click="updatePlace" v-if="!editDisabled"></i>
+            </div>         
         </section>
     `,
     props: ['place'],
