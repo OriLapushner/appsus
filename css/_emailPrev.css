@@ -1,4 +1,19 @@
 .email-prev{
-    background:gray;
-    margin: 3px;
+    display: flex;
+    background:#545966;
+    padding: 3px;
+    border-bottom: 2px solid rgb(7, 13, 22);
+}
+.email-prev:hover{
+    background-color: hsl(224, 10%, 22%);
+    color: rgb(169, 179, 238);
+}
+.email-prev input{
+margin:auto 10px;
+}
+.prev-text{
+    width: 100%;
+}
+.isRead{
+    background: rgb(170, 160, 160);
 }

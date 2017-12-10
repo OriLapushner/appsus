@@ -6,8 +6,8 @@ import EventBusService from '../services/EventBusService.js'
 export default {
 
     template: `
-                <div class ="list-container">
-                    <email-prev v-for="mail in mails" :mail="mail" class="email-prev" :key="mail.id"></email-prev>
+                <div>
+                    <email-prev v-for="mail in mails" :mail="mail" :key="mail.id"></email-prev>
                 </div>
     `,
     data() {
@@ -28,23 +28,12 @@ export default {
             })
         })
         EventBusService.$on('mailChecked',(id) => {
-            // var index = this.mailsChecked.findIndex(mailChecked => mailChecked.id === id)
             // console.log('the wanted index is: ',index,'of element with id',id)
             if( id in this.mailsChecked) delete this.mailsChecked[id]
             else this.mailsChecked[id] = true; 
-            // console.log(this.mailsChecked);
-            // if(index === -1){
-            //     this.mailsChecked.push({
-            //         id,
-            //         value:true
-            //     }
-            //     )}
-            // else this.mailsChecked[index].value = !this.mailsChecked[index].value
-            // console.log('mails checked status is: ',this.mailsChecked)
         })
         EventBusService.$on('deleteClicked',() => {
             console.log(this.mailsChecked)
-            var indexToDelete;
             for(const key in this.mailsChecked){
                 for (var i = 0; i < this.mails.length; i++) {
                     if(this.mails[i].id === +key){
@@ -55,10 +44,19 @@ export default {
                 }
                 
             }
-            console.log(this.mails);
-            // EmailService.deleteMails([0,1])
-            // this.mails = EmailService.mailList
-            // console.log('delete clicked,mails after delete:',this.mails)
+        })
+        EventBusService.$on('markClicked', () =>{
+            console.log('mark mails event was shot')
+            for(const key in this.mailsChecked){
+                for (var i = 0; i < this.mails.length; i++) {
+                    if(this.mails[i].id === +key){
+                        this.mails[i].isRead = true
+                    }
+                }
+            }
+        })
+        EventBusService.$on('sortByDateClicked', ()=>{
+            this.mails.sort((a,b) =>a.sentAt - b.sentAt)
         })
     },
     components: {
