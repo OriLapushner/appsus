@@ -48,7 +48,7 @@ footer {
     font-family: var(--font-family-subtitle);
     font-size: var(--font-size-subtitle);
     background: rgb(128, 121, 121);    
-
+    margin-top: 10px;
 }
 
 

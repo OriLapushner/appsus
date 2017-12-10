@@ -6,7 +6,7 @@ import EventBusService from '../services/EventBusService.js'
 export default {
 
     template: `
-                <div>
+                <div class ="list-items">
                     <email-prev v-for="mail in mails" :mail="mail" :key="mail.id"></email-prev>
                 </div>
     `,

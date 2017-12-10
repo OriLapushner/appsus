@@ -2,7 +2,7 @@ import EmailService from '../services/EmailService.js'
 import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
-    <div>
+    <div class="email-menu">
         <button @click="toggleCompose" class="compose-btn">composeMail</button><br>
         <button @click="markMails" class="mark-read-btn">mark as read</button><br>
         <button @click="deleteMails" class="email-delete-btn">

@@ -51,3 +51,15 @@ background: #4d222d;
 .email-delete-btn:hover{
     background: #172358;
     }
+
+.email-menu input {
+    background: transparent;
+    margin-top: 20px;
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid rgb(177, 112, 112);
+    outline: none;
+    text-align: center;
+    font-family: var(--font-family-text);
+    margin-bottom: 5px;
+}

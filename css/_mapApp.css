@@ -8,7 +8,7 @@
 }
 
 .container {
-    background: rgb(251, 232, 232);
+    background: var(--body-bg-color);
 }
 
 .search-form {
@@ -28,7 +28,7 @@
 .preview-details {
     font-size: var(--font-size-text);
     font-family: var(--font-family-text);
-    background: #cfb3b3;
+    background: #b7b4c3;
     justify-content: center;
     width: 70%;
     text-align: center;
@@ -57,7 +57,7 @@
     margin-top: 20px;
     width: 50%;
     border: none;
-    border-bottom: 1px solid rgb(82, 29, 29);
+    border-bottom: 1px solid rgb(177, 112, 112);
     outline: none;
     text-align: center;
     font-family: var(--font-family-text);

@@ -7,7 +7,6 @@ import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
         <div>
-            <h1>Emails App</h1>
             <div class="list-and-display-container">
                 <div class ="list-container">
                 <email-menu @toggleCompose="isComposeShown = !isComposeShown"></email-menu>

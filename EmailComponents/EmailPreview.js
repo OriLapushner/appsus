@@ -4,8 +4,13 @@ export default {
 
     template: `
                 <div class="email-prev" :class="classes">
+                    <div class="email-markers">
+                    <i class="fa fa-envelope-open" aria-hidden="true" v-show="mail.isRead"></i>
                     <input type ="checkbox" @click="updateValueStatus(mail.id)">
+                    </div>
                     <div class="prev-text" @click ="selectMail(mail)">
+                    <span v-if="mail.isRead" class="read-email">
+                    </span>
                         {{mail.title}}<br>
                         {{mail.sentBy}}<br>
                         {{mail.sendAtStr}}

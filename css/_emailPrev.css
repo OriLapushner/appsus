@@ -16,3 +16,12 @@ margin:auto 10px;
 .isRead{
     background: rgb(170, 160, 160);
 }
+
+.fa-envelope-open {
+    margin-left: 8px;
+}
+
+.email-markers {
+    margin-top: auto;
+    margin-bottom: auto;
+}
