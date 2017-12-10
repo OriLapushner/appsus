@@ -3,6 +3,7 @@
 import MapService from '../services/MapService.js';
 import PlacePreview from '../MapComps/PlacePreview.js';
 import PlaceDetails from '../MapComps/PlaceDetails.js';
+import SaveForm from '../MapComps/SaveForm.js';
 
 /* <button class="form-item search-btn" @click="searchPlace">Search</button>  */
 
@@ -32,9 +33,14 @@ export default {
             </form>
         </div>
         <div id="map"></div>  
-        <div class="places-title">Your Places</div>        
+        <div class="places-title">Your Places</div> 
+            <select class="sort-places" v-model="sortBy">
+                <option>Address</option>
+                <option>Tag</option>
+                <span>Selected: {{ sortBy }}</span>                    
+            </select> 
         <ul class="place-preview">
-            <li class="preview-details" v-for="place in places">
+            <li class="preview-details" v-for="place in sortedPlaces">
                 <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
                 <place-details v-if="selectedId === place.id" :place="place"></place-details>
             </li>
@@ -43,7 +49,7 @@ export default {
     `,
     data() {
         return {
-            places: {},
+            places: [],
             searchTxt: '',
             currPlace: null,
             text: '',
@@ -51,6 +57,7 @@ export default {
             desc: '',
             tag: '',
             selectedId: null,
+            sortBy: ''
         }
     },
     methods: {
@@ -61,14 +68,26 @@ export default {
                 this.selectedId = id;
             }
         },
+        sortByString(places,prop) {
+            if(prop === 'Address') prop = 'name'
+            if(prop === 'Tag') prop = 'tag'
+            var sorted = this.places.slice();
+            if(!prop) return sorted
+            sorted.sort((a, b) => {
+                if (a[prop] < b[prop]) return -1;
+                if (a[prop] > b[prop]) return 1;
+                return 0;
+            })
+            return sorted;            
+        },
         searchPlace() {
             MapService.searchPlace(this.searchTxt)
                 .then((res) => {
                     console.log(res)
-                    console.log(this.searchTxt)                    
+                    console.log(this.searchTxt)
                     if (!res) return
                     this.currPlace = res;
-                    this.text = "Found address! do you want to save?"
+
                     MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
                     this.isShown = true;
                 })
@@ -84,7 +103,7 @@ export default {
                 tag: this.tag
             }
             this.places.push(addedPlace);
-        },
+        }
     },
     created() {
         MapService.getPlaces()
@@ -95,9 +114,17 @@ export default {
     mounted() {
         MapService.initMap();
     },
+    computed: {
+        sortedPlaces() {
+            var displayPlaces
+            displayPlaces = this.sortByString(displayPlaces,this.sortBy)
+            return displayPlaces;
+        }
+    },
     components: {
         PlacePreview,
         PlaceDetails,
+        SaveForm
     }
 }
 
