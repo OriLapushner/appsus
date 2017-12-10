@@ -3,12 +3,15 @@ import EventBusService from '../services/EventBusService.js'
 export default {
     template: `
     <div>
-        <button @click="toggleCompose">composeMail</button>
-        <button @click="deleteMails">delete</button>
-        <button @click="markMails">mark as read</button>         
-        <input type="text" placeholder="search email" @change="updateEmailList" v-model="searchText">
-        <button @click="sortByDate">arrange by date</button>
-        <button>unread first</button>
+        <button @click="toggleCompose" class="compose-btn">composeMail</button><br>
+        <button @click="markMails" class="mark-read-btn">mark as read</button><br>
+        <button @click="deleteMails" class="email-delete-btn">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> delete
+        </button><br>
+        <button @click="sortByDate" class="arrange-date-btn">arrange by date</button>
+        <input type="text" placeholder="search email" @keyup="updateEmailList" v-model="searchText">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        
     </div>
 `,
             data(){

@@ -6,7 +6,13 @@ var sourceMailList = [
         title: 'title',
         isRead: true,
         sentAt: Date.now() +2000,
-        content: 'body of email text',
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
         sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
@@ -15,7 +21,13 @@ var sourceMailList = [
         title: 'title1',
         isRead: false,
         sentAt: Date.now() + 400,
-        content: 'content1',
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
         sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
@@ -24,7 +36,13 @@ var sourceMailList = [
         title: 'title2',
         isRead: false,
         sentAt: Date.now() + 100,
-        content: 'content2',
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
         sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
     {
@@ -33,7 +51,13 @@ var sourceMailList = [
         title: 'title3',
         isRead: false,
         sentAt: Date.now() + 200,
-        content: 'content3',
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
         sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
     },
 ]

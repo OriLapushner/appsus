@@ -1,0 +1,53 @@
+.compose-btn,.mark-read-btn,.arrange-date-btn,.email-delete-btn{
+    margin-bottom:3px;
+}
+
+
+.compose-btn{
+background: #cf2525;
+border-radius: 28px;
+font-family: Arial;
+color: #ffffff;
+font-size: 14px;
+border:none;
+}
+.compose-btn:hover{
+background: #4d222d;
+}
+
+.mark-read-btn{
+    background: #5261b9;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    border:none;
+    }
+    .mark-read-btn:hover{
+    background: #172358;
+    }
+
+
+.arrange-date-btn{
+    background: #5261b9;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    border:none;
+    }
+.arrange-date-btn:hover{
+    background: #172358;
+    }
+
+.email-delete-btn{
+    background: #5261b9;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    border:none;
+}
+.email-delete-btn:hover{
+    background: #172358;
+    }
