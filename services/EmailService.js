@@ -48,7 +48,37 @@ var sourceMailList = [
     {
         id: 3,
         sentBy: 'sentBy3',
-        title: 'title3',
+        title: 'title3',    
+        isRead: false,
+        sentAt: Date.now() + 200,
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
+    },
+    {
+        id: 4,
+        sentBy: 'sentBy4',
+        title: 'title4',    
+        isRead: false,
+        sentAt: Date.now() + 200,
+        content: `
+        Lorem ipsum dolor sit amet, vel ancillae scaevola philosophia te, at vim noster latine impedit.
+         Nobis appetere ut vel, nec illud suscipit delicata ea.
+         Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti
+        Eu utinam discere eum. Ut graecis periculis mea, liber lobortis sadipscing ut vix.
+        Ex fasti`,
+        sendAtStr: (new Date() + '').replace(/GMT.*\(.*\)/,'')
+    },
+    {
+        id: 5,
+        sentBy: 'sentBy5',
+        title: 'title5',    
         isRead: false,
         sentAt: Date.now() + 200,
         content: `
@@ -86,15 +116,6 @@ function searchMailsByTxt(txt) {
     })
     console.log(mailList)
 }
-
-// function searchMailByTxt(mail,txt){
-//     console.log('text to search: ',txt)
-//     if(mail.title.includes(txt)) return true
-//     if(mail.content.includes(txt)) return true
-//     if(mail.sentBy.includes(txt)) return true
-//     return false;
-// }
-
 
 function deleteMail(mailId) {
     var index = mailList.findIndex(mail => mail.id === mailId)

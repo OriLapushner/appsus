@@ -7,63 +7,75 @@ export default {
 
     template: `
                 <div class ="list-items">
-                    <email-prev v-for="mail in mails" :mail="mail" :key="mail.id"></email-prev>
+                    <email-prev v-for="mail in mailsDisplayed" :mail="mail" :key="mail.id"></email-prev>
                 </div>
     `,
     data() {
         return {
             composeShown: false,
             mails: null,
+            searchTxt: ''
         }
     },
-    created(){
+    methods: {
+        filterByTxt(mails,txt){
+        return mails.filter(mail => {
+            if (mail.title.includes(txt)) return true
+            if (mail.content.includes(txt)) return true
+            if (mail.sentBy.includes(txt)) return true
+            return false;
+        })     
+    }
+    },
+    created() {
         this.mailsChecked = {}
         this.mails = EmailService.getMails()
-        
-        EventBusService.$on('searchExecuted',(txt) =>{
-            this.mails = EmailService.getMails().filter(mail => {
-                if (mail.title.includes(txt)) return true
-                if (mail.content.includes(txt)) return true
-                if (mail.sentBy.includes(txt)) return true
-                return false;
-            })
+        EventBusService.$on('searchExecuted', (txt) => {
+                this.searchTxt = txt
         })
-        EventBusService.$on('mailChecked',(id) => {
+        EventBusService.$on('mailChecked', (id) => {
             // console.log('the wanted index is: ',index,'of element with id',id)
-            if( id in this.mailsChecked) delete this.mailsChecked[id]
-            else this.mailsChecked[id] = true; 
+            if (id in this.mailsChecked) delete this.mailsChecked[id]
+            else this.mailsChecked[id] = true;
         })
-        EventBusService.$on('deleteClicked',() => {
-            console.log(this.mailsChecked)
-            for(const key in this.mailsChecked){
+        EventBusService.$on('deleteClicked', () => {
+            // console.log(this.mailsChecked)
+            for (const key in this.mailsChecked) {
                 for (var i = 0; i < this.mails.length; i++) {
-                    if(this.mails[i].id === +key){
-
-                    this.mails.splice(i,1)
+                    if (this.mails[i].id === +key) {
+                        this.mails.splice(i, 1)
                         break;
+                    }
                 }
-                }
-                
+
             }
         })
-        EventBusService.$on('markClicked', () =>{
+        EventBusService.$on('markClicked', () => {
             console.log('mark mails event was shot')
-            for(const key in this.mailsChecked){
+            for (const key in this.mailsChecked) {
                 for (var i = 0; i < this.mails.length; i++) {
-                    if(this.mails[i].id === +key){
+                    if (this.mails[i].id === +key) {
                         this.mails[i].isRead = true
                     }
                 }
             }
         })
-        EventBusService.$on('sortByDateClicked', ()=>{
-            this.mails.sort((a,b) =>a.sentAt - b.sentAt)
+        EventBusService.$on('sortByDateClicked', () => {
+            this.mails.sort((a, b) => a.sentAt - b.sentAt)
         })
     },
     components: {
         EmailPrev,
         EmailCompose
-    }
+    },
+    computed: {
+        mailsDisplayed(){
+            var mailsToDisplay = this.mails.slice()
+            mailsToDisplay = this.filterByTxt(mailsToDisplay,this.searchTxt)
+            return mailsToDisplay
+        }
+
+    },
 }
 
     // methods:{

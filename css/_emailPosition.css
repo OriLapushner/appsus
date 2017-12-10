@@ -2,12 +2,8 @@
 display:flex;
 width: 100% ;
 background: var(--body-bg-color);
-/* height: 430px; */
+height: 430px;
 margin-top: 20px;
-}
-.list-container{
-    width:30%;
-    min-width: 200px;
 }
 .email-display{
     border: 1px solid rgb(177, 112, 112);
