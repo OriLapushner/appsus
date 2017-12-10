@@ -1,0 +1,41 @@
+.detail-name {
+    background: transparent;
+    margin-top: 10px;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid rgb(82, 29, 29);
+    outline: none;
+    text-align: center;
+    font-family: var(--font-family-text);
+    font-size: var(--font-size-text);
+}
+
+.detail-desc {
+    background: transparent;
+    margin-top: 10px;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid rgb(82, 29, 29);
+    outline: none;
+    text-align: center;
+    font-family: var(--font-family-text);
+    font-size: var(--font-size-text);    
+}
+
+.detail-tag {
+    background: transparent;
+    margin-top: 10px;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid rgb(82, 29, 29);
+    outline: none;
+    text-align: center;
+    font-family: var(--font-family-text);
+    font-size: var(--font-size-text);  
+}
+
+.action-detail-btns {
+    display: flex;  
+    justify-content: space-around;
+    padding-bottom: 5px;
+}

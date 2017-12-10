@@ -1,9 +1,14 @@
 /* Homepage CSS */
 
-nav {
+.upper-nav {
     background: rgb(251, 232, 232);
     text-align: center;
     text-decoration: none;
+    font-family: var(--font-family-subtitle);
+    font-size: var(--font-size-subtitle);
+    display: flex;
+    justify-content: space-around;
+    color: rgb(82, 29, 29);
 }
 
 .homepage-main {
@@ -37,3 +42,13 @@ nav {
     font-size: var(--font-size-title);
     text-align: center;    
 }
+
+footer {
+    text-align: center;
+    font-family: var(--font-family-subtitle);
+    font-size: var(--font-size-subtitle);
+    background: rgb(128, 121, 121);    
+
+}
+
+
