@@ -11,7 +11,7 @@ var places = [
         desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
         lat: 32.055916,
         lng: 34.766896,
-        tag: 'Home',
+        tag: 'Culture',
         photo: '..img/maon3.jpg'
     },
     {
