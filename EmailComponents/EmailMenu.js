@@ -4,13 +4,14 @@ export default {
     template: `
     <div>
         <button @click="toggleCompose">composeMail</button>
-        <button @click="deleteMails">delete</button>
+        <i class="fa fa-trash-o delete-btn" aria-hidden="true" @click="deleteMails"></i>        
         <button @click="markMails">mark as read</button>         
         <input type="text" placeholder="search email" @change="updateEmailList" v-model="searchText">
         <button @click="sortByDate">arrange by date</button>
         <button>unread first</button>
     </div>
 `,
+
             data(){
                 return {
                     searchText: ''

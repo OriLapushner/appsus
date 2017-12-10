@@ -19,6 +19,7 @@ export default {
     created(){
         this.mailsChecked = {}
         this.mails = EmailService.getMails()
+        
         EventBusService.$on('searchExecuted',(txt) =>{
             this.mails = EmailService.getMails().filter(mail => {
                 if (mail.title.includes(txt)) return true
