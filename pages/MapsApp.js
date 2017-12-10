@@ -18,27 +18,18 @@ export default {
 
         <div v-if="isShown">
             <p>{{text}}</p>
-            <form class="search-res">
-                <p class="search-res-address">{{currPlace.formatted_address}}</p>
-                <input class="search-res-desc" placeholder="Description" v-model="desc" required/>
-                Tag: <select class="search-res-tag" v-model="tag">
-                    <option>Culture</option>
-                    <option>Sport</option>
-                    <option>Food</option>
-                    <option>Work</option>
-                    <span>Selected: {{ tag }}</span>                    
-                </select>  
-                <button class="save-btn" @click="savePlace">Save Place</button>
-                <button class="cancel-btn" @click="isShown = false">Cancel</button>
-            </form>
+            <save-form :place="currPlace" @addPlace="savePlace" @closeModal="toggleModal"></save-form>
         </div>
         <div id="map"></div>  
-        <div class="places-title">Your Places</div> 
+        <div class="places-title">Your Places
             <select class="sort-places" v-model="sortBy">
+                <option>Sort</option>
                 <option>Address</option>
                 <option>Tag</option>
                 <span>Selected: {{ sortBy }}</span>                    
             </select> 
+        </div> 
+
         <ul class="place-preview">
             <li class="preview-details" v-for="place in sortedPlaces">
                 <place-preview :place="place" @editClicked="changeSelectedId"></place-preview>
@@ -57,7 +48,7 @@ export default {
             desc: '',
             tag: '',
             selectedId: null,
-            sortBy: ''
+            sortBy: 'Sort'
         }
     },
     methods: {
@@ -68,17 +59,18 @@ export default {
                 this.selectedId = id;
             }
         },
-        sortByString(places,prop) {
-            if(prop === 'Address') prop = 'name'
-            if(prop === 'Tag') prop = 'tag'
+        sortByString(places, prop) {
+            if (prop === 'Sort') return this.places;
+            if (prop === 'Address') prop = 'name';
+            if (prop === 'Tag') prop = 'tag';
             var sorted = this.places.slice();
             if(!prop) return sorted
-            sorted.sort((a, b) => {
-                if (a[prop] < b[prop]) return -1;
-                if (a[prop] > b[prop]) return 1;
-                return 0;
-            })
-            return sorted;            
+                sorted.sort((a, b) => {
+                    if (a[prop] < b[prop]) return -1;
+                    if (a[prop] > b[prop]) return 1;
+                        return 0;
+                })
+                return sorted;            
         },
         searchPlace() {
             MapService.searchPlace(this.searchTxt)
@@ -93,16 +85,13 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
-        savePlace() {
-            var addedPlace = {
-                id: this.currPlace.place_id,
-                name: this.currPlace.formatted_address,
-                desc: this.desc,
-                lat: this.currPlace.geometry.location.lat,
-                lng: this.currPlace.geometry.location.lng,
-                tag: this.tag
-            }
+        toggleModal() {
+            this.isShown = !this.isShown;
+            console.log(this.isShown);
+        },
+        savePlace(addedPlace) {
             this.places.push(addedPlace);
+            this.isShown = !this.isShown;            
         }
     },
     created() {
@@ -117,7 +106,7 @@ export default {
     computed: {
         sortedPlaces() {
             var displayPlaces
-            displayPlaces = this.sortByString(displayPlaces,this.sortBy)
+            displayPlaces = this.sortByString(displayPlaces, this.sortBy)
             return displayPlaces;
         }
     },
@@ -127,6 +116,20 @@ export default {
         SaveForm
     }
 }
+
+{/* <form class="search-res">
+<p class="search-res-address">{{currPlace.formatted_address}}</p>
+<input class="search-res-desc" placeholder="Description" v-model="desc" required/>
+Tag: <select class="search-res-tag" v-model="tag">
+    <option>Culture</option>
+    <option>Sport</option>
+    <option>Food</option>
+    <option>Work</option>
+    <span>Selected: {{ tag }}</span>                    
+</select>  
+<button class="save-btn" @click="savePlace">Save Place</button>
+<button class="cancel-btn" @click="isShown = false">Cancel</button>
+</form> */}
 
 
 

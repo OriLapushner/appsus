@@ -36,6 +36,10 @@ export default {
         EventBusService.$on('mailSelected', (currMail) => {
             this.currMail = currMail;
         })
+
+        EventBusService.$on('closeCompose', (currMail) => {
+            this.isComposeShown = false
+        })
     },
     components: {
         EmailList,

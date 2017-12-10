@@ -62,7 +62,6 @@ function setAutocomplete(gMap) {
 }
 
 function initialPlace(initLocation, gMap) {
-    // var markers = gMarkers;
     var loc = {};
     var geocoder = new google.maps.Geocoder();
     // if(google.loader.ClientLocation) {
@@ -81,7 +80,6 @@ function initialPlace(initLocation, gMap) {
             markers.push(getMarker(place, gMap));
         };
     });
-    // };
 }
 
 function initSearch() {
