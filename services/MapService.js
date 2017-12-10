@@ -2,6 +2,7 @@
 
 var id = 100;
 var gMap;
+var gMarkers = [];
 
 var places = [
     {
@@ -24,6 +25,100 @@ var places = [
     }
 ]
 
+var markers = [];
+var infoWindow = new google.maps.InfoWindow({
+    content: 'placeholder...'
+});
+
+function getMarker(place, gMap) {
+
+    var content = `
+        <p>${place.name}</p>
+    `;
+
+    var marker = new google.maps.Marker({
+        position: {lat: place.lat, lng: place.lng},
+        map: gMap,
+        title: place.name,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    })
+    marker.addListener('click', function () {
+        infoWindow.setContent(content);
+        infoWindow.open(gMap, marker);
+    });
+
+    return marker;
+}
+
+function getInputElement() {
+    return document.querySelector('.search-input');
+}
+
+function setAutocomplete(gMap) {
+    var input = getInputElement();
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', gMap);
+}
+
+function initialPlace(initLocation, gMap) {
+    // var markers = gMarkers;
+    var loc = {};
+    var geocoder = new google.maps.Geocoder();
+    // if(google.loader.ClientLocation) {
+    //     loc.lat = google.loader.ClientLocation.latitude;
+    //     loc.lng = google.loader.ClientLocation.longitude;
+
+    var latlng = new google.maps.LatLng(initLocation.lat, initLocation.lng);
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            //const {lat, lng} = results[0].geometry.location
+            const place = {
+                name: results[0].formatted_address,
+                lat: initLocation.lat,
+                lng: initLocation.lng
+            };
+            markers.push(getMarker(place, gMap));
+        };
+    });
+    // };
+}
+
+function initSearch() {
+    var input = getInputElement();
+    var searchBox = new google.maps.places.SearchBox(input);
+
+    searchBox.addListener('places_changed', function () {
+        console.log('places changed')
+        var places = searchBox.getPlaces();
+        if (places.length === 0) {
+            return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+            marker.setMap(null);
+        });
+        // markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+
+            const p = {
+                name: place.name,
+                lat: place.geometry.location.lat,
+                lng: place.geometry.location.lng
+            };
+            markers.push(getMarker(p, gMap));
+        });
+    });
+}
+
 function initMap(lat, lng) {
     if (!lat) lat = 27.715390;
     if (!lng) lng = 85.312329;
@@ -31,52 +126,19 @@ function initMap(lat, lng) {
         zoom: 15,
         center: { lat, lng }
     });
+    var p = { name: 'default', desc: 'default', tag: 'default' };
+    initSearch(gMap);
+    initialPlace({lat, lng}, gMap);
+
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    var markers = places.map(function (place, i) {
-        return new google.maps.Marker({
-            position: {
-                lat: place.lat, lng: place.lng
-            },
-            label: labels[i % labels.length]
-        });
-    });
-
-    var markerCluster = new MarkerClusterer(gMap, markers,
-        { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
-    var marker = new google.maps.Marker({
-        position: { lat, lng },
-        map: gMap,
-        title: 'This is you',
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        // icon: set custom icon
-    });
     places.forEach(place => {
-        var infoWindow = new google.maps.InfoWindow({
-            content: `
-            <p>${place.name}</p>
-            <p>${place.desc}</p>
-            <p>${place.tag}</p>
-            `
-        })
-        marker.addListener('click', function () {
-            infoWindow.open(gMap, marker);
-        })
-        var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(32.085300, 34.781768),
-            new google.maps.LatLng(32.162413, 34.844675));
-
-        var options = {
-            bounds: defaultBounds
-        }
-
-        var input = document.querySelector('.search-input');
-        // gMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        const { lat, lng } = place;
+        getMarker(place, gMap)
     })
+
+    setAutocomplete(gMap);
+    // getInitialPlace(lat, lng, gMap)
 
     function toggleBounce() {
         if (marker.getAnimation() !== null) {
@@ -121,6 +183,7 @@ function deletePlace(placeId) {
     return new Promise((resolve, reject) => {
         let placeIdx = places.findIndex(place => place.id === placeId);
         places.splice(placeIdx, 1);
+        resolve()
     })
 }
 
@@ -151,6 +214,8 @@ export default {
     deletePlace,
     searchPlace,
     addPlace,
-    updatePlace
+    updatePlace,
+    initSearch,
+    gMap
 }
 

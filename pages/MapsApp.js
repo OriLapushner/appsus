@@ -48,40 +48,41 @@ export default {
             currPlace: null,
             text: '',
             isShown: false,
-            desc: '', 
+            desc: '',
             tag: '',
             selectedId: null,
-            // showSearch: true
         }
     },
-    methods:  {
-        changeSelectedId(id){
-            // console.log({id})
-            this.selectedId = id;
+    methods: {
+        changeSelectedId(id) {
+            if (this.selectedId === id) {
+                this.selectedId = null;
+            } else {
+                this.selectedId = id;
+            }
         },
         searchPlace() {
             MapService.searchPlace(this.searchTxt)
-            .then((res) => {
-                console.log(res)
-                if (!res) return
-                this.currPlace = res;
-                this.text = "Found address! do you want to save?"
-                MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
-                this.isShown = true;  
-                // showSearch = false;              
-            })
-            .catch(err => console.log(err))
+                .then((res) => {
+                    console.log(res)
+                    console.log(this.searchTxt)                    
+                    if (!res) return
+                    this.currPlace = res;
+                    this.text = "Found address! do you want to save?"
+                    MapService.initMap(res.geometry.location.lat, res.geometry.location.lng);
+                    this.isShown = true;
+                })
+                .catch(err => console.log(err))
         },
         savePlace() {
             var addedPlace = {
-                id: this.currPlace.place_id ,
-                name: this.currPlace.formatted_address, 
-                desc: this.desc, 
-                lat: this.currPlace.geometry.location.lat ,
+                id: this.currPlace.place_id,
+                name: this.currPlace.formatted_address,
+                desc: this.desc,
+                lat: this.currPlace.geometry.location.lat,
                 lng: this.currPlace.geometry.location.lng,
                 tag: this.tag
             }
-            // if (this.desc && this.tag === '') alert('Please fill out some info about this place');
             this.places.push(addedPlace);
         },
     },
@@ -92,7 +93,7 @@ export default {
             })
     },
     mounted() {
-        MapService.initMap();        
+        MapService.initMap();
     },
     components: {
         PlacePreview,

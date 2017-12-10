@@ -21,15 +21,19 @@
     list-style: none;
     display: flex;
     flex-flow: column wrap;
+    padding: 0px;
+    align-items: center
 }
 
 .preview-details {
     font-size: var(--font-size-text);
     font-family: var(--font-family-text);
     background: #cfb3b3;
+    justify-content: center;
     width: 70%;
     text-align: center;
     padding-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .places-title {
