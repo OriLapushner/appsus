@@ -117,19 +117,7 @@ export default {
     }
 }
 
-{/* <form class="search-res">
-<p class="search-res-address">{{currPlace.formatted_address}}</p>
-<input class="search-res-desc" placeholder="Description" v-model="desc" required/>
-Tag: <select class="search-res-tag" v-model="tag">
-    <option>Culture</option>
-    <option>Sport</option>
-    <option>Food</option>
-    <option>Work</option>
-    <span>Selected: {{ tag }}</span>                    
-</select>  
-<button class="save-btn" @click="savePlace">Save Place</button>
-<button class="cancel-btn" @click="isShown = false">Cancel</button>
-</form> */}
+
 
 
 
